@@ -1,0 +1,63 @@
+﻿{
+   "ContextClassName": "EasyDbContext",
+   "ContextNamespace": null,
+   "DefaultDacpacSchema": null,
+   "DoNotCombineNamespace": false,
+   "IdReplace": false,
+   "IncludeConnectionString": true,
+   "ModelNamespace": null,
+   "OutputContextPath": null,
+   "OutputPath": null,
+   "ProjectRootNamespace": "PTLC.Data",
+   "SelectedHandlebarsLanguage": 0,
+   "SelectedToBeGenerated": 0,
+   "Tables": [
+      {
+         "HasPrimaryKey": true,
+         "Name": "[dbo].[BusinessClass]"
+      },
+      {
+         "HasPrimaryKey": true,
+         "Name": "[dbo].[DeliveryAdditions]"
+      },
+      {
+         "HasPrimaryKey": true,
+         "Name": "[dbo].[DeliveryItems]"
+      },
+      {
+         "HasPrimaryKey": true,
+         "Name": "[dbo].[DeliveryMaster]"
+      },
+      {
+         "HasPrimaryKey": true,
+         "Name": "[dbo].[DeliveryStatus]"
+      },
+      {
+         "HasPrimaryKey": true,
+         "Name": "[dbo].[Merchant]"
+      },
+      {
+         "HasPrimaryKey": true,
+         "Name": "[dbo].[RateMatrix]"
+      },
+      {
+         "HasPrimaryKey": true,
+         "Name": "[dbo].[Rider]"
+      },
+      {
+         "HasPrimaryKey": true,
+         "Name": "[dbo].[SalesAgent]"
+      },
+      {
+         "HasPrimaryKey": true,
+         "Name": "[dbo].[VehicleType]"
+      }
+   ],
+   "UseDatabaseNames": false,
+   "UseDbContextSplitting": false,
+   "UseFluentApiOnly": false,
+   "UseHandleBars": false,
+   "UseInflector": true,
+   "UseLegacyPluralizer": false,
+   "UseSpatial": false
+}
