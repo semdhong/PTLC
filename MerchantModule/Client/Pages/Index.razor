@@ -1,0 +1,247 @@
+﻿@page "/"
+@inject IJSRuntime js
+@inject HttpClient http
+@using Syncfusion.EJ2.Blazor.Inputs
+<!-- ======= Contact Us Section ======= -->
+@* <div class="row">
+
+        <div class="col-lg-12 d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="100">
+            <div class="info">
+                @if (Vehicles != null)
+                {
+                    @foreach (var ve in Vehicles)
+                    {
+                        @switch (ve.Id)
+                        {
+                            case 1:
+
+                                <RadzenButton Click="@((args) => Click(args, ve.Id))" Text="@ve.VehicleName" Style="margin-bottom: 0px; width: 100px;height:50px;" Image="/images/moto.png" />
+
+                                ; break;
+                            case 2:
+
+                                <RadzenButton Click="@((args) => Click(args, ve.Id))" Text="@ve.VehicleName" Style="margin-bottom: 0px; width: 100px;height:50px;" Image="/images/mpv.png" />
+
+                                ; break;
+                            case 3:
+
+                                <RadzenButton Click="@((args) => Click(args, ve.Id))" Text="@ve.VehicleName" Style="margin-bottom: 0px; width: 100px;height:50px;" Image="/images/L300.png" />
+
+                                ; break;
+                            case 4:
+
+                                <RadzenButton Click="@((args) => Click(args, ve.Id))" Text="@ve.VehicleName" Style="margin-bottom: 0px; width: 100px;height:50px;" Image="/images/L300.png" />
+
+                                ; break;
+                            case 5:
+
+                                <RadzenButton Click="@((args) => Click(args, ve.Id))" Text="@ve.VehicleName" Style="margin-bottom: 20px; width: 100px;height:50px;" Image="/images/4WCLOSED.png" />
+
+                                ; break;
+                            case 6:
+
+                                <RadzenButton Click="@((args) => Click(args, ve.Id))" Text="@ve.VehicleName" Style="margin-bottom: 20px; width: 100px;height:50px;" Image="/images/4WCLOSED.png" />
+
+
+                                ; break;
+                            case 7:
+
+                                <RadzenButton Click="@((args) => Click(args, ve.Id))" Text="@ve.VehicleName" Style="margin-bottom: 20px; width: 100px;height:50px;" Image="/images/10Wwingvan.png" />
+
+                                ; break;
+                            default:
+
+                                <RadzenButton Click="@((args) => Click(args, ve.Id))" Text="@ve.VehicleName" Style="margin-bottom: 20px; width: 100px;height:50px;" Image="/images/reefer.png" />
+
+                                ; break;
+                        }
+                    }
+                }
+            </div>
+
+        </div>
+    </div>*@
+<section id="contact" class="contact">
+    <div class="container">
+      
+        <RadzenTemplateForm Data="@Merchant" Submit="@((  MerchantModule.Shared.MerchantModule.MerchantModuleModel args) => { Submit(args); })">
+            <RadzenFieldset Text="Delivery Information">
+
+                <div class="row">
+                    <div class="align-items-center d-flex col-md-2">
+                        <RadzenLabel Text="Origin" />
+                    </div>
+                    <div class="col-md-10">
+                        <RadzenTextBox id="origin-input" />
+                        <input hidden="hidden" id="originlong" @bind-value="@OLong" />
+                        <input hidden="hidden" id="originlat" @bind-value="@OLat">
+                        <input hidden="hidden" id="originname" @bind-value="@OName" />
+                        <input hidden="hidden" id="originaddress" @bind-value="@OAddress">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="align-items-center d-flex col-md-2">
+                        <RadzenLabel Text="Destination" />
+                    </div>
+                    <div class="col-md-10">
+                        <RadzenTextBox id="destination-input" />
+                        <input hidden="hidden" id="destlong" @bind-value="@DLong" />
+                        <input hidden="hidden" id="destlat" @bind-value="@DLat">
+                        <input hidden="hidden" id="destname" @bind-value="@DName" />
+                        <input hidden="hidden" id="destaddress" @bind-value="@DAddress">
+                    </div>
+
+                </div>
+            </RadzenFieldset>
+        </RadzenTemplateForm>
+    </div>
+    <RadzenCard>
+        @OLong
+        @OLat
+        @OName
+        @OAddress
+        <div id="component-container">
+            @if (DynamicRender != null)
+            {
+           @foreach (var item in DynamicRender)
+           {
+            <div class="col-md-10">
+                @item
+            </div>
+              
+           }
+            }
+        </div>
+        <EjsButton ID="dynamic-button" Content="Render TextBox" @onclick="RenderComponent"></EjsButton>
+    </RadzenCard>
+    <RadzenCard>
+        @DLong
+        @DLat
+        @DName
+        @DAddress
+    </RadzenCard>
+
+
+</section>
+@*<div class="row">
+
+
+        <div class="info">
+            <div class="col-lg-7 mt-5 mt-lg-0 d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="200">
+
+
+                <label for="name">Select Pick Up</label>
+                <Syncfusion.EJ2.Blazor.Inputs.EjsTextBox ID="origin-input" />
+                <div class="validate"></div>
+
+                <div class="form-group">
+                    <label for="name">Select Destination</label>
+                    <Syncfusion.EJ2.Blazor.Inputs.EjsTextBox ID="destination-input" />
+                    <div class="validate"></div>
+                </div>
+                <div class="form-group">
+                    <label for="name">Total Distance</label>
+                    <input type="text" class="form-control" id="total" data-rule="minlen:4" @bind-value="@ChangeValue" />
+                    <div class="validate"></div>
+                </div>
+                <div class="row">
+                    <div class="text-center"><button type="submit">Deliver Later</button><button type="submit">Deliver Now</button></div>
+                </div>
+
+            </div>
+
+        </div>
+
+
+    </div>*@
+
+<div id="selectcarbar">
+
+</div>
+
+@code{
+    private static Action action;
+
+    public List<MerchantModule.Shared.Maintenance.VehicleTypeModel> Vehicles { get; set; }
+    public List<MerchantModule.Shared.Maintenance.RateMatrixModel> Rates { get; set; }
+    MerchantModule.Shared.Maintenance.VehicleTypeModel Vehicle = new MerchantModule.Shared.Maintenance.VehicleTypeModel();
+    MerchantModule.Shared.Maintenance.RateMatrixModel Rate = new MerchantModule.Shared.Maintenance.RateMatrixModel();
+    MerchantModule.Shared.MerchantModule.MerchantModuleModel Merchant = new MerchantModule.Shared.MerchantModule.MerchantModuleModel();
+    public double? TotalRate { get; set; }
+    public double? ChangeValue { get; set; }
+    public float? OLong { get; set; }
+    public float? OLat { get; set; }
+    public string OAddress { get; set; }
+    public string OName { get; set; }
+    public float? DLong { get; set; }
+    public float? DLat { get; set; }
+    public string DAddress { get; set; }
+    public string DName { get; set; }
+    public int WayPointCtr { get; set; }
+    protected async override Task OnInitializedAsync()
+    {
+        DynamicRender = new List<RenderFragment>();
+        Vehicles = await http.GetFromJsonAsync<List<MerchantModule.Shared.Maintenance.VehicleTypeModel>>("https://commandeasy.azurewebsites.net/api/Vehicles");
+        Rates = await http.GetFromJsonAsync<List<MerchantModule.Shared.Maintenance.RateMatrixModel>>("https://commandeasy.azurewebsites.net/api/RateMatrix");
+        WayPointCtr = 0;
+
+    }
+
+
+    void Click(MouseEventArgs args, int buttonName)
+    {
+        var rate = (double)Rates.FirstOrDefault(x => x.VehicleTypeId == buttonName).BaseRate;
+        var kmrate = (double)Rates.FirstOrDefault(x => x.VehicleTypeId == buttonName).KmRate;
+        TotalRate = kmrate * ChangeValue + rate;
+
+    }
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        await js.InvokeVoidAsync("AutoCompleteAddressOrigin");
+        await js.InvokeVoidAsync("AutoCompleteAddressDest");
+    }
+
+    void Submit(MerchantModule.Shared.MerchantModule.MerchantModuleModel arg)
+    {
+        //
+    }
+
+
+    private List<RenderFragment> DynamicRender { get; set; }
+
+    private RenderFragment CreateComponent(int ctr) => builder =>
+    {
+       
+        builder.OpenComponent(0, typeof(RadzenTextBox));
+        builder.AddAttribute(1, "ID", "Wp"+ctr);
+        builder.CloseComponent();
+    };
+
+    private void RenderComponent()
+    {
+        WayPointCtr++;
+        DynamicRender.Add(CreateComponent(WayPointCtr));
+    }
+
+
+
+
+}
+<style>
+    [type=radio] {
+        position: absolute;
+        opacity: 0;
+        width: 0;
+        height: 0;
+    }
+
+        /* IMAGE STYLES */
+        [type=radio] + img {
+            cursor: pointer;
+        }
+
+        /* CHECKED STYLES */
+        [type=radio]:checked + img {
+            outline: 2px solid #f00;
+        }
+</style>

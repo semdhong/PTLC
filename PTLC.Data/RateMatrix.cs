@@ -10,27 +10,31 @@ namespace PTLC.Data
     public partial class RateMatrix
     {
         [Key]
-        public Guid MerchantId { get; set; }
-        [Key]
         public int VehicleTypeId { get; set; }
         [Column(TypeName = "money")]
         public decimal? BaseRate { get; set; }
         [Column(TypeName = "money")]
         public decimal? KmRate { get; set; }
-        [StringLength(128)]
+        [StringLength(450)]
         public string CreatedBy { get; set; }
         [Column(TypeName = "datetime")]
         public DateTime? CreatedDate { get; set; }
-        [StringLength(128)]
+        [StringLength(450)]
         public string UpdatedBy { get; set; }
         [Column(TypeName = "datetime")]
         public DateTime? UpdatedDate { get; set; }
+        [Column(TypeName = "money")]
+        public decimal? DropRate { get; set; }
+        [Column(TypeName = "money")]
+        public decimal? HundredKm { get; set; }
+        public bool? Vatable { get; set; }
+        [Column(TypeName = "money")]
+        public decimal? HundredKmSucceed { get; set; }
+        [Column(TypeName = "money")]
+        public decimal? ExcessHour { get; set; }
 
-        [ForeignKey(nameof(MerchantId))]
-        [InverseProperty("RateMatrices")]
-        public virtual Merchant Merchant { get; set; }
         [ForeignKey(nameof(VehicleTypeId))]
-        [InverseProperty("RateMatrices")]
+        [InverseProperty("RateMatrix")]
         public virtual VehicleType VehicleType { get; set; }
     }
 }

@@ -1,0 +1,30 @@
+﻿@page "/"
+@inject HttpClient http
+@inject IJSRuntime js
+
+<RadzenPanel>
+
+
+
+
+    <div id="map" style="width:100%;height:400px;"></div>
+
+
+
+
+    <MainPanel />
+
+</RadzenPanel>
+
+
+
+@code{
+ protected override async Task OnAfterRenderAsync(bool firstRender)
+            {
+                await js.InvokeVoidAsync("initMap");
+            }
+    
+}
+
+
+

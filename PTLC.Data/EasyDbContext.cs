@@ -21,10 +21,14 @@ namespace PTLC.Data
         public virtual DbSet<DeliveryItem> DeliveryItems { get; set; }
         public virtual DbSet<DeliveryMaster> DeliveryMasters { get; set; }
         public virtual DbSet<DeliveryStatus> DeliveryStatuses { get; set; }
+        public virtual DbSet<DeviceCode> DeviceCodes { get; set; }
+        public virtual DbSet<InspectionNote> InspectionNotes { get; set; }
         public virtual DbSet<Merchant> Merchants { get; set; }
+        public virtual DbSet<PersistedGrant> PersistedGrants { get; set; }
         public virtual DbSet<RateMatrix> RateMatrices { get; set; }
         public virtual DbSet<Rider> Riders { get; set; }
         public virtual DbSet<SalesAgent> SalesAgents { get; set; }
+        public virtual DbSet<Vehicle> Vehicles { get; set; }
         public virtual DbSet<VehicleType> VehicleTypes { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
@@ -32,7 +36,7 @@ namespace PTLC.Data
             if (!optionsBuilder.IsConfigured)
             {
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. See http://go.microsoft.com/fwlink/?LinkId=723263 for guidance on storing connection strings.
-                optionsBuilder.UseSqlServer("Data Source=.;Initial Catalog=easydeliverydb;Integrated Security=True");
+                optionsBuilder.UseSqlServer("Data Source=.;Initial Catalog=pltc;Integrated Security=True");
             }
         }
 
@@ -64,6 +68,19 @@ namespace PTLC.Data
                     .HasConstraintName("FK_DeliveryMaster_Rider");
             });
 
+            modelBuilder.Entity<DeviceCode>(entity =>
+            {
+                entity.HasIndex(e => e.DeviceCode1)
+                    .IsUnique();
+
+                entity.HasIndex(e => e.Expiration);
+            });
+
+            modelBuilder.Entity<InspectionNote>(entity =>
+            {
+                entity.HasIndex(e => e.VehicleLicenseNumber);
+            });
+
             modelBuilder.Entity<Merchant>(entity =>
             {
                 entity.Property(e => e.Id).ValueGeneratedNever();
@@ -76,19 +93,23 @@ namespace PTLC.Data
                     .HasConstraintName("FK_Merchant_SalesAgent");
             });
 
+            modelBuilder.Entity<PersistedGrant>(entity =>
+            {
+                entity.HasIndex(e => e.Expiration);
+
+                entity.HasIndex(e => new { e.SubjectId, e.ClientId, e.Type });
+            });
+
             modelBuilder.Entity<RateMatrix>(entity =>
             {
-                entity.HasKey(e => new { e.MerchantId, e.VehicleTypeId });
+                entity.HasKey(e => e.VehicleTypeId)
+                    .HasName("PK_RateMatrix_1");
 
-                entity.HasOne(d => d.Merchant)
-                    .WithMany(p => p.RateMatrices)
-                    .HasForeignKey(d => d.MerchantId)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_RateMatrix_Merchant");
+                entity.Property(e => e.VehicleTypeId).ValueGeneratedNever();
 
                 entity.HasOne(d => d.VehicleType)
-                    .WithMany(p => p.RateMatrices)
-                    .HasForeignKey(d => d.VehicleTypeId)
+                    .WithOne(p => p.RateMatrix)
+                    .HasForeignKey<RateMatrix>(d => d.VehicleTypeId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_RateMatrix_VehicleType");
             });

@@ -2,8 +2,6 @@
    "ContextClassName": "EasyDbContext",
    "ContextNamespace": null,
    "DefaultDacpacSchema": null,
-   "DoNotCombineNamespace": false,
-   "IdReplace": false,
    "IncludeConnectionString": true,
    "ModelNamespace": null,
    "OutputContextPath": null,
@@ -34,7 +32,19 @@
       },
       {
          "HasPrimaryKey": true,
+         "Name": "[dbo].[DeviceCodes]"
+      },
+      {
+         "HasPrimaryKey": true,
+         "Name": "[dbo].[InspectionNote]"
+      },
+      {
+         "HasPrimaryKey": true,
          "Name": "[dbo].[Merchant]"
+      },
+      {
+         "HasPrimaryKey": true,
+         "Name": "[dbo].[PersistedGrants]"
       },
       {
          "HasPrimaryKey": true,
@@ -50,6 +60,10 @@
       },
       {
          "HasPrimaryKey": true,
+         "Name": "[dbo].[Vehicles]"
+      },
+      {
+         "HasPrimaryKey": true,
          "Name": "[dbo].[VehicleType]"
       }
    ],
@@ -59,5 +73,7 @@
    "UseHandleBars": false,
    "UseInflector": true,
    "UseLegacyPluralizer": false,
-   "UseSpatial": false
+   "UseNodaTime": false,
+   "UseSpatial": false,
+   "UseStoredProcedures": false
 }

@@ -1,0 +1,12 @@
+﻿@inject IJSRuntime js
+@inject HttpClient http
+    <Radzen.Blazor.RadzenCard>
+
+        <div id="map" style="width:100%;height:400px;"></div>
+    </Radzen.Blazor.RadzenCard>
+    @code {
+        protected override async Task OnAfterRenderAsync(bool firstRender)
+        {
+            await js.InvokeVoidAsync("initMap");
+        }
+    }

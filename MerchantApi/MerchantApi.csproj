@@ -1,8 +1,14 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
   </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\PTLC.Model\PTLC.Model.csproj" />
+    <ProjectReference Include="..\PTLC.Repository\PTLC.Repository.csproj" />
+    <ProjectReference Include="..\PTLC.Services\PTLC.Services.csproj" />
+  </ItemGroup>
 
 
 </Project>

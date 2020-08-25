@@ -10,5 +10,7 @@ namespace PTLC.Repository
         void AddAsync(TEntity entity);
 
        void UpdateAsync(TEntity entity);
+
+        void DeleteAsync(TEntity entity);
     }
 }

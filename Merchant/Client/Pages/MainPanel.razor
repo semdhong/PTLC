@@ -1,0 +1,220 @@
+﻿@inject HttpClient http
+@using Syncfusion.EJ2.Blazor.Inputs
+@using Syncfusion.EJ2.Blazor.DropDowns
+@using Syncfusion.EJ2.Blazor.Buttons
+<EjsDropDownList TValue="string" TItem="Merchant.Shared.Maintenance.VehicleTypeModel"  Placeholder="Select a Vehicle" DataSource="@Vehicles">
+    <DropDownListTemplates TItem="Merchant.Shared.Maintenance.VehicleTypeModel">
+        <ItemTemplate Context="Vehicle">
+            <div>
+
+                @switch (Vehicle.Id)
+                {
+                    case 1:
+                        <div class="logo">
+                            <RadzenButton Click="@((args) => Click(args, Vehicle.Id))" Text="@Vehicle.VehicleName" Style="margin-bottom: 0px; width: 100px;height:50px;" Image="/images/moto.png" />
+
+                        </div>
+                        ; break;
+                    case 2:
+                        <div class="logo">
+
+                            <RadzenButton Click="@((args) => Click(args, Vehicle.Id))" Text="@Vehicle.VehicleName" Style="margin-bottom: 0px; width: 100px;height:50px;" Image="/images/mpv.png" />
+                        </div>
+                        ; break;
+                    case 3:
+                        <div class="logo">
+
+                            <RadzenButton Click="@((args) => Click(args, Vehicle.Id))" Text="@Vehicle.VehicleName" Style="margin-bottom: 0px; width: 100px;height:50px;" Image="/images/L300.png" />
+                        </div>
+                        ; break;
+                    case 4:
+                        <div class="logo">
+                            <RadzenButton Click="@((args) => Click(args, Vehicle.Id))" Text="@Vehicle.VehicleName" Style="margin-bottom: 0px; width: 100px;height:50px;" Image="/images/L300.png" />
+
+                        </div>
+                        ; break;
+                    case 5:
+                        <div class="logo">
+                            <RadzenButton Click="@((args) => Click(args, Vehicle.Id))" Text="@Vehicle.VehicleName" Style="margin-bottom: 20px; width: 100px;height:50px;" Image="/images/4WCLOSED.png" />
+
+                        </div>
+                        ; break;
+                    case 6:
+                        <div class="logo">
+                            <RadzenButton Click="@((args) => Click(args, Vehicle.Id))" Text="@Vehicle.VehicleName" Style="margin-bottom: 20px; width: 100px;height:50px;" Image="/images/4WCLOSED.png" />
+
+                        </div>
+                        ; break;
+                    case 7:
+                        <div class="logo">
+
+                            <RadzenButton Click="@((args) => Click(args, Vehicle.Id))" Text="@Vehicle.VehicleName" Style="margin-bottom: 20px; width: 100px;height:50px;" Image="/images/10Wwingvan.png" />
+                        </div>
+                        ; break;
+                    default:
+                        <div class="logo">
+
+                            <RadzenButton Click="@((args) => Click(args, Vehicle.Id))" Text="@Vehicle.VehicleName" Style="margin-bottom: 20px; width: 100px;height:50px;" Image="/images/reefer.png" />
+                        </div>
+                        ; break;
+                }
+            </div>
+        </ItemTemplate>
+        
+    </DropDownListTemplates>
+    <DropDownListFieldSettings Value="FirstName"></DropDownListFieldSettings>
+</EjsDropDownList>
+<div id="selectcarbar">
+
+
+
+
+    <RadzenDataList PageSize="10" WrapItems="true" AllowPaging="true" Data="@Vehicles" TItem="Merchant.Shared.Maintenance.VehicleTypeModel">
+        <Template Context="ve">
+
+            <div class="row">
+                <div class="col-md-4">
+
+
+
+
+
+                    @switch (Vehicle.Id)
+                    {
+                        case 1:
+                            <div class="logo">
+                                <RadzenButton Click="@((args) => Click(args, Vehicle.Id))" Text="@Vehicle.VehicleName" Style="margin-bottom: 0px; width: 100px;height:50px;" Image="/images/moto.png" />
+
+                            </div>
+                            ; break;
+                        case 2:
+                            <div class="logo">
+
+                                <RadzenButton Click="@((args) => Click(args, Vehicle.Id))" Text="@Vehicle.VehicleName" Style="margin-bottom: 0px; width: 100px;height:50px;" Image="/images/mpv.png" />
+                            </div>
+                            ; break;
+                        case 3:
+                            <div class="logo">
+
+                                <RadzenButton Click="@((args) => Click(args, Vehicle.Id))" Text="@Vehicle.VehicleName" Style="margin-bottom: 0px; width: 100px;height:50px;" Image="/images/L300.png" />
+                            </div>
+                            ; break;
+                        case 4:
+                            <div class="logo">
+                                <RadzenButton Click="@((args) => Click(args, Vehicle.Id))" Text="@Vehicle.VehicleName" Style="margin-bottom: 0px; width: 100px;height:50px;" Image="/images/L300.png" />
+
+                            </div>
+                            ; break;
+                        case 5:
+                            <div class="logo">
+                                <RadzenButton Click="@((args) => Click(args, Vehicle.Id))" Text="@Vehicle.VehicleName" Style="margin-bottom: 20px; width: 100px;height:50px;" Image="/images/4WCLOSED.png" />
+
+                            </div>
+                            ; break;
+                        case 6:
+                            <div class="logo">
+                                <RadzenButton Click="@((args) => Click(args, Vehicle.Id))" Text="@Vehicle.VehicleName" Style="margin-bottom: 20px; width: 100px;height:50px;" Image="/images/4WCLOSED.png" />
+
+                            </div>
+                            ; break;
+                        case 7:
+                            <div class="logo">
+
+                                <RadzenButton Click="@((args) => Click(args, Vehicle.Id))" Text="@Vehicle.VehicleName" Style="margin-bottom: 20px; width: 100px;height:50px;" Image="/images/10Wwingvan.png" />
+                            </div>
+                            ; break;
+                        default:
+                            <div class="logo">
+
+                                <RadzenButton Click="@((args) => Click(args, Vehicle.Id))" Text="@Vehicle.VehicleName" Style="margin-bottom: 20px; width: 100px;height:50px;" Image="/images/reefer.png" />
+                            </div>
+                            ; break;
+                    }
+
+
+
+
+
+                </div>
+
+            </div>
+
+
+        </Template>
+    </RadzenDataList>
+
+
+
+
+
+</div>
+<Radzen.Blazor.RadzenCard>
+    <div class="control-label">
+        Origin
+    </div>
+    <Syncfusion.EJ2.Blazor.Inputs.EjsTextBox ID="origin-input" Placeholder="From" />
+    <div class="control-label">
+        Destination
+    </div>
+    <Syncfusion.EJ2.Blazor.Inputs.EjsTextBox ID="destination-input" Placeholder="To" />
+    <div class="control-label">
+
+    </div>
+
+    <div class="control-label">
+        Total Distance
+    </div>
+    <input type="text" id="total" @bind-value="@TxtVal" @bind-value:event="onchange" />
+</Radzen.Blazor.RadzenCard>
+<RadzenCard Style="width:200px;">
+    @TotalRate
+    @TxtVal
+</RadzenCard>
+
+
+@code {
+    public double? sample { get; set; }
+    public double? ChangeValue { get; set; }
+    public string TxtVal { get; set; }
+    public void OnChange(Syncfusion.EJ2.Blazor.Inputs.ChangeEventArgs args)
+    {
+        this.ChangeValue = (double)args.Value;
+    }
+    public List<Merchant.Shared.Maintenance.VehicleTypeModel> Vehicles { get; set; }
+    public List<Merchant.Shared.Maintenance.RateMatrixModel> Rates { get; set; }
+    Merchant.Shared.Maintenance.VehicleTypeModel Vehicle = new Merchant.Shared.Maintenance.VehicleTypeModel();
+    Merchant.Shared.Maintenance.RateMatrixModel Rate = new Merchant.Shared.Maintenance.RateMatrixModel();
+    public double? TotalRate { get; set; }
+    protected async override Task OnInitializedAsync()
+    {
+
+        Vehicles = await http.GetFromJsonAsync<List<Merchant.Shared.Maintenance.VehicleTypeModel>>("https://commandeasy.azurewebsites.net/api/Vehicles");
+        Rates = await http.GetFromJsonAsync<List<Merchant.Shared.Maintenance.RateMatrixModel>>("https://commandeasy.azurewebsites.net/api/RateMatrix");
+    }
+    void Change(object value, string name)
+    {
+        var str = value is IEnumerable<int> ? string.Join(", ", (IEnumerable<int>)value) : value;
+
+        StateHasChanged();
+    }
+
+    void Click(MouseEventArgs args, int buttonName)
+    {
+        var rate = (double)Rates.FirstOrDefault(x => x.VehicleTypeId == buttonName).BaseRate;
+        var kmrate = (double)Rates.FirstOrDefault(x => x.VehicleTypeId == buttonName).KmRate;
+        TotalRate = kmrate * ChangeValue + rate;
+        StateHasChanged();
+    }
+}
+<style type="text/css">
+    .content-wrapper {
+        width: 30%;
+        margin: 0 auto;
+        min-width: 185px;
+    }
+
+    .control-label {
+        padding: 15px 0px 5px 0px;
+        font-size: 12px;
+    }
+</style>

@@ -20,11 +20,11 @@ namespace PTLC.Data
         public string RefNo { get; set; }
         public Guid? MerchantId { get; set; }
         public Guid? RiderId { get; set; }
-        [StringLength(128)]
+        [StringLength(450)]
         public string CreatedBy { get; set; }
         [Column(TypeName = "datetime")]
         public DateTime? CreatedDate { get; set; }
-        [StringLength(128)]
+        [StringLength(450)]
         public string UpdatedBy { get; set; }
         [Column(TypeName = "datetime")]
         public DateTime? UpdatedDate { get; set; }
@@ -35,6 +35,8 @@ namespace PTLC.Data
         [Column(TypeName = "money")]
         public decimal? TotalPayable { get; set; }
         public int? TotalDelivered { get; set; }
+        [Column(TypeName = "text")]
+        public string Origin { get; set; }
 
         [ForeignKey(nameof(MerchantId))]
         [InverseProperty("DeliveryMasters")]

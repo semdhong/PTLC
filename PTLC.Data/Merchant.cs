@@ -12,7 +12,6 @@ namespace PTLC.Data
         public Merchant()
         {
             DeliveryMasters = new HashSet<DeliveryMaster>();
-            RateMatrices = new HashSet<RateMatrix>();
         }
 
         [Key]
@@ -30,11 +29,11 @@ namespace PTLC.Data
         public string Email { get; set; }
         [Column(TypeName = "date")]
         public DateTime? Birthdate { get; set; }
-        [StringLength(128)]
+        [StringLength(450)]
         public string CreatedBy { get; set; }
         [Column(TypeName = "datetime")]
         public DateTime? CreatedDate { get; set; }
-        [StringLength(128)]
+        [StringLength(450)]
         public string UpdatedBy { get; set; }
         [Column(TypeName = "datetime")]
         public DateTime? UpdatedDate { get; set; }
@@ -46,13 +45,13 @@ namespace PTLC.Data
         public string Pic { get; set; }
         [StringLength(50)]
         public string QrCode { get; set; }
+        [StringLength(450)]
+        public string UserId { get; set; }
 
         [ForeignKey(nameof(AgentId))]
         [InverseProperty(nameof(SalesAgent.Merchants))]
         public virtual SalesAgent Agent { get; set; }
         [InverseProperty(nameof(DeliveryMaster.Merchant))]
         public virtual ICollection<DeliveryMaster> DeliveryMasters { get; set; }
-        [InverseProperty(nameof(RateMatrix.Merchant))]
-        public virtual ICollection<RateMatrix> RateMatrices { get; set; }
     }
 }

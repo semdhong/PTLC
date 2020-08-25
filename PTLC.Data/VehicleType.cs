@@ -9,17 +9,12 @@ namespace PTLC.Data
     [Table("VehicleType")]
     public partial class VehicleType
     {
-        public VehicleType()
-        {
-            RateMatrices = new HashSet<RateMatrix>();
-        }
-
         [Key]
         public int Id { get; set; }
         public string VehicleName { get; set; }
         public string Capacity { get; set; }
 
-        [InverseProperty(nameof(RateMatrix.VehicleType))]
-        public virtual ICollection<RateMatrix> RateMatrices { get; set; }
+        [InverseProperty("VehicleType")]
+        public virtual RateMatrix RateMatrix { get; set; }
     }
 }

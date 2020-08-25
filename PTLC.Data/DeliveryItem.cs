@@ -24,6 +24,9 @@ namespace PTLC.Data
         [Column(TypeName = "money")]
         public decimal? TotalPayable { get; set; }
         public int? DeliveryStatus { get; set; }
+        [Column(TypeName = "datetime")]
+        public DateTime? ScheduleDate { get; set; }
+        public double? Distance { get; set; }
 
         [ForeignKey(nameof(DeliveryMasterId))]
         [InverseProperty("DeliveryItems")]

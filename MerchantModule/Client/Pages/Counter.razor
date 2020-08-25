@@ -1,0 +1,21 @@
+﻿@page "/counter"
+@inject HttpClient http
+
+<RadzenDropDown TValue="string" Placeholder="Select..." Data="@Vehicles" TextProperty="VehicleName" ValueProperty="Id" Style="margin-bottom: 20px; width:400px;">
+
+</RadzenDropDown>
+
+@code {
+    public List<MerchantModule.Shared.Maintenance.VehicleTypeModel> Vehicles { get; set; }
+    public List<MerchantModule.Shared.Maintenance.RateMatrixModel> Rates { get; set; }
+    MerchantModule.Shared.Maintenance.VehicleTypeModel Vehicle = new MerchantModule.Shared.Maintenance.VehicleTypeModel();
+    MerchantModule.Shared.Maintenance.RateMatrixModel Rate = new MerchantModule.Shared.Maintenance.RateMatrixModel();
+    public double? TotalRate { get; set; }
+    public double? ChangeValue { get; set; }
+    protected async override Task OnInitializedAsync()
+    {
+
+        Vehicles = await http.GetFromJsonAsync<List<MerchantModule.Shared.Maintenance.VehicleTypeModel>>("https://commandeasy.azurewebsites.net/api/Vehicles");
+        Rates = await http.GetFromJsonAsync<List<MerchantModule.Shared.Maintenance.RateMatrixModel>>("https://commandeasy.azurewebsites.net/api/RateMatrix");
+    }
+}

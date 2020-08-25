@@ -4,4 +4,10 @@
     <TargetFramework>netcoreapp3.1</TargetFramework>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\PTLC.Data\PTLC.Data.csproj" />
+    <ProjectReference Include="..\PTLC.Model\PTLC.Model.csproj" />
+    <ProjectReference Include="..\PTLC.Repository\PTLC.Repository.csproj" />
+  </ItemGroup>
+
 </Project>
